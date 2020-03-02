@@ -1,0 +1,16 @@
+venues_api_categories:
+    path: /api/venues/categories
+    controller: App\Controller\Api\VenueController::getCategories
+
+venues_api_explore:
+    path: /api/venues/explore/{categoryId}
+    controller: App\Controller\Api\VenueController::getExplore
+
+
+venues_front_categories:
+    path: /front/venues/categories
+    controller: App\Controller\Front\VenueController::getCategories
+
+venues_front_explore:
+    path: /front/venues/explore/{categoryId}
+    controller: App\Controller\Front\VenueController::getExplore

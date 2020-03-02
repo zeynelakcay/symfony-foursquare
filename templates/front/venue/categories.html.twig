@@ -1,0 +1,21 @@
+{% extends 'front/layout/default.html.twig' %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="list-group">
+                {% for mainCategory in categories %}
+                    <a href="#" data-id="{{ mainCategory.id  }}" class="list-group-item z-main">
+                        {{ mainCategory.name }}
+                        <span class="badge badge-danger badge-pill">{{ mainCategory.categories|length   }}</span>
+                    </a>
+                    <div class="list-group z-sub z-sub-{{ mainCategory.id }}">
+                        {% for subCategory in mainCategory.categories %}
+                            <a href="/front/venues/explore/{{ subCategory.id }}" class="list-group-item sub-item">{{ subCategory.name }}</a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
