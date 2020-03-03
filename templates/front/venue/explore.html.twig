@@ -2,12 +2,22 @@
 {% block body %}
     <div class="jumbotron">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/front/venues/categories" class="btn btn-sm btn-success">Categories</a>
+                </div>
+            </div>
+            <hr>
             <div class="list-group">
-                {% for place in places %}
-                    <a href="#" class="list-group-item">
-                        <span class="badge badge-primary badge-pill">{{ loop.index }}</span> {{ place.venue.name }}
-                    </a>
-                {% endfor %}
+                {% if places|length > 0 %}
+                    {% for place in places %}
+                        <a href="#" class="list-group-item">
+                            <span class="badge badge-primary badge-pill">{{ loop.index }}</span> {{ place.venue.name }}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    Not Found !
+                {% endif  %}
             </div>
         </div>
     </div>
