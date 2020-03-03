@@ -19,11 +19,13 @@ class VenueController extends AbstractClientController
         $response = new ReturnObj();
 
         $client = $this->foursquareClient();
-        $command = $client->getCommand('venues/categories', []);
 
-        $response->status = true;
-        $response->data = (array) $client->execute($command);
-
+        $command = $client->getCommand('venues/categories');
+        $result =  $client->execute($command);
+        if (isset($result)){
+            $response->status = true;
+            $response->data =  $result['response']["categories"];
+        }
         return $this->json($response);
     }
 
@@ -31,17 +33,18 @@ class VenueController extends AbstractClientController
         $response = new ReturnObj();
 
         if (isset($categoryId)) {
-
+            $arrayCategoryName = $this->getArrayCategoryName();
             $client = $this->foursquareClient();
             $command = $client->getCommand('venues/explore', [
                 'near' => 'valletta',
-                'categoryId' => $categoryId
+                'categoryId' => $arrayCategoryName[$categoryId]
             ]);
-
-            $response->status = true;
-            $response->data = (array)$client->execute($command);
+            $result = $client->execute($command);
+            if (isset($result)){
+                $response->status = true;
+                $response->data = $result['response']["groups"][0]['items'];
+            }
         }
-
         return $this->json($response);
     }
 

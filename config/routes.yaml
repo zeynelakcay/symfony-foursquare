@@ -12,5 +12,5 @@ venues_front_categories:
     controller: App\Controller\Front\VenueController::getCategories
 
 venues_front_explore:
-    path: /front/venues/explore/{categoryId}
+    path: /front/venues/explore{categoryId}
     controller: App\Controller\Front\VenueController::getExplore
